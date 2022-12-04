@@ -14,7 +14,7 @@ function App() {
           <h1>this is natureFresh</h1>
           <Routes>
             <Route path="/" element={<HomeScreen />} />
-            <Route path="/product/:product_id" element={<ProductScreen />} />
+            <Route path="/product/:id" element={<ProductScreen />} />
           </Routes>
         </Container>
       </main>
