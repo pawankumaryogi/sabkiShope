@@ -13,7 +13,7 @@ export const listProducts = () => async (dispath) => {
 
     dispath({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
-    dispatchEvent({
+    dispatch({
       type: PRODUCT_LIST_FAIL,
       payload:
         error.response && error.response.data.message
