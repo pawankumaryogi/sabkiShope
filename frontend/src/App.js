@@ -11,7 +11,7 @@ function App() {
       <Header />
       <main className="my-3">
         <Container>
-          <h1>this is natureFresh</h1>
+          <h1>this is Gadgets Shope</h1>
           <Routes>
             <Route path="/" element={<HomeScreen />} />
             <Route path="/product/:id" element={<ProductScreen />} />
