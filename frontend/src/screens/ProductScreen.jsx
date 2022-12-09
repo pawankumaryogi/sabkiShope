@@ -21,7 +21,7 @@ const ProductScreen = () => {
   },[dispatch])
 
   const addToCartHander = ()=>{
-      navigate(`/cart/${id}?qty=${qty}`)
+      navigate(`/cart/${id}?qty=${qty}`);
   }
 
   
@@ -40,7 +40,7 @@ const ProductScreen = () => {
       <Col md={3}>
         <ListGroup variant='flush'>
           <ListGroup.Item>
-            <h3>{product.name}</h3>
+            <h3 >{product.name}</h3>
           </ListGroup.Item>
           <ListGroup.Item>
             <Rating value={product.rating} text={`${product.numReviews} reviews`}/>
