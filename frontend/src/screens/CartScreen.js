@@ -11,7 +11,7 @@ import {
   Card,
 } from "react-bootstrap";
 import { useLocation, useNavigate, useParams, Link } from "react-router-dom";
-import { addToCart } from "../actions/cartActions";
+import { addToCart, removeFromCart } from "../actions/cartActions";
 import Message from "../components/Message";
 
 const CartScreen = () => {
@@ -23,6 +23,8 @@ const CartScreen = () => {
 
   const cart = useSelector((state) => state.cart);
 
+  const navigate = useNavigate();
+
   const { cartItems } = cart;
 
   useEffect(() => {
@@ -32,7 +34,10 @@ const CartScreen = () => {
   }, [dispatch, productId, qty]);
 
   const removeFromCartHandler = (id) => {
-    console.log(id);
+    dispatch(removeFromCart(id));
+  };
+  const checkOutHandler = () => {
+    navigate(`/login?redirect=shipping`);
   };
 
   return (
@@ -90,6 +95,29 @@ const CartScreen = () => {
             ))}
           </ListGroup>
         )}
+      </Col>
+      <Col md={4}>
+        <ListGroup variant="flush">
+          <ListGroup.Item>
+            <h2>
+              Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+            </h2>
+            ₹
+            {cartItems
+              .reduce((acc, item) => acc + item.qty * item.price, 0)
+              .toFixed(2)}
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <Button
+              type="button"
+              className="btn-block"
+              disabled={cartItems.length === 0}
+              onClick={checkOutHandler}
+            >
+              Proceed To checkout
+            </Button>
+          </ListGroup.Item>
+        </ListGroup>
       </Col>
     </Row>
   );
