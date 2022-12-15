@@ -11,7 +11,8 @@ function RegisterScreen() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [cofirmPassword, setConfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState(null);
 
   const dispatch = useDispatch();
   const userRegister = useSelector((state) => state.userRegister);
@@ -30,12 +31,17 @@ function RegisterScreen() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(register(name, email, password));
+    if (password != confirmPassword) {
+      setMessage("Password do not match");
+    } else {
+      dispatch(register(name, email, password));
+    }
   };
 
   return (
     <FormContainer>
       <h1>Sign UP </h1>
+      {message && <Message variant="danger">{message}</Message>}
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
@@ -71,7 +77,7 @@ function RegisterScreen() {
           <Form.Control
             type="password"
             placeholder="Confirm Password"
-            value={password}
+            value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
