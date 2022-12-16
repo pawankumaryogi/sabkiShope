@@ -21,6 +21,9 @@ function ProfileScreen() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -52,6 +55,8 @@ function ProfileScreen() {
         {message && <Message variant="danger">{message}</Message>}
 
         {error && <Message variant="danger">{error}</Message>}
+
+        {success && <Message>User Profile Updated</Message>}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
