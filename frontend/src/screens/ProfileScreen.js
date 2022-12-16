@@ -4,7 +4,7 @@ import { Form, Row, Col, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { getUserDetails } from "../actions/userActions";
+import { getUserDetails, updateUserProfile } from "../actions/userActions";
 
 function ProfileScreen() {
   const [email, setEmail] = useState("");
@@ -42,7 +42,7 @@ function ProfileScreen() {
     if (password != confirmPassword) {
       setMessage("Password do not match");
     } else {
-      //   dispatch(register(name, email, password));
+      dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
   };
   return (
