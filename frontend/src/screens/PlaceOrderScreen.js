@@ -13,21 +13,35 @@ import { useDispatch, useSelector } from "react-redux";
 import { savePaymentMethod } from "../actions/cartActions";
 import Message from "../components/Message";
 import CheckoutSteps from "../components/CheckoutSteps";
+import { createOrder } from "../actions/orderActons";
 
 function PlaceOrderScreen() {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   cart.itemsPrice = cart.cartItems.reduce(
     (acc, item) => acc + item.qty * item.price,
     0
   );
-
+  console.log(cart);
   cart.shippingPrice = cart.itemsPrice > 500 ? 0 : 80;
 
   cart.taxPrice = Number((0.18 * cart.itemsPrice).toFixed(2));
 
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
 
-  const placeOrderHandler = () => {};
+  const placeOrderHandler = () => {
+    dispatch(
+      createOrder({
+        orderItems: cart.orderItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        taxPrice: cart.taxPrice,
+        shippingPrice: cart.shippingPrice,
+        totalPrice: cart.totalPrice,
+        itemsPrice: cart.itemsPrice,
+      })
+    );
+  };
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4 />
