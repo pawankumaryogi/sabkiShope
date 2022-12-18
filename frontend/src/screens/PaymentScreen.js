@@ -35,7 +35,7 @@ const PaymentScreen = () => {
         <Col>
           <Form.Check
             type="radio"
-            label="Paypal or Credit Card"
+            label="Paypal"
             id="paypal"
             name="paymentMethod"
             value="PayPal"
@@ -46,10 +46,30 @@ const PaymentScreen = () => {
           ></Form.Check>
           <Form.Check
             type="radio"
-            label="Paypal or Credit Card"
-            id="paypal"
+            label="UPI"
+            id="upi"
             name="paymentMethod"
-            value="PayPal"
+            value="upi"
+            onChange={(e) => {
+              setPaymentMethod(e.target.value);
+            }}
+          ></Form.Check>
+          <Form.Check
+            type="radio"
+            label="Credit Card"
+            id="creditCart"
+            name="paymentMethod"
+            value="creditcart"
+            onChange={(e) => {
+              setPaymentMethod(e.target.value);
+            }}
+          ></Form.Check>
+          <Form.Check
+            type="radio"
+            label="RazorPay"
+            id="razoprpay"
+            name="paymentMethod"
+            value="razorpay"
             onChange={(e) => {
               setPaymentMethod(e.target.value);
             }}
