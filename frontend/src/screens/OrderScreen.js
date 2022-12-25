@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Col, Image, ListGroup, Card, Row } from "react-bootstrap";
+import { Col, Image, ListGroup, Row } from "react-bootstrap";
 import { PayPalButton } from "react-paypal-button-v2";
 import axios from "axios";
 import { useParams, Link, useNavigate } from "react-router-dom";
@@ -23,17 +23,6 @@ function OrderScreen() {
   const { loading: loadingPay, success: successPay } = orderPay;
 
   useEffect(() => {
-    // const addPaypalScript = async () => {
-    //   const { data: clientId } = await axios.get("/api/config/paypal");
-    //   const script = document.createElement("script");
-    //   script.type = "text/javascript";
-    //   script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
-    //   script.async = true;
-    //   script.onload = () => {
-    //     setSdkReady(true);
-    //   };
-    //   document.body.appendChild(script);
-    // };
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get("/api/config/paypal");
       const script = document.createElement("script");
@@ -59,7 +48,6 @@ function OrderScreen() {
   }, [dispatch, orderId, order, successPay]);
 
   const successPaymentHandler = (paymentResult) => {
-    console.log(paymentResult);
     dispatch(payOrder(orderId, paymentResult));
   };
 
@@ -101,7 +89,9 @@ function OrderScreen() {
                 {order.paymentMethod}
               </p>
               {order.isPaid ? (
-                <Message variant="success">{order.paidAt}</Message>
+                <Message variant="success">
+                  Order Paid At {order.paidAt}
+                </Message>
               ) : (
                 <Message variant="danger">Order Not Paid</Message>
               )}
