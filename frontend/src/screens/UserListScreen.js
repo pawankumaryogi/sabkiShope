@@ -25,7 +25,7 @@ function UserListScreen() {
     } else {
       navigate("/login");
     }
-  }, [dispatch, successDelete]);
+  }, [dispatch, successDelete, userInfo, navigate]);
 
   const deleteHandler = (id) => {
     if (window.confirm("Are You Sure")) {
@@ -58,8 +58,7 @@ function UserListScreen() {
                 <td>{user.name}</td>
                 <td>
                   {" "}
-                  <a href={`mailto:${user.email}`}></a>
-                  {user.email}
+                  <a href={`mailto:${user.email}`}> {user.email}</a>
                 </td>
                 <td>
                   {user.isAdmin ? (
