@@ -16,7 +16,7 @@ function RegisterScreen() {
 
   const dispatch = useDispatch();
   const userRegister = useSelector((state) => state.userRegister);
-  console.log(userRegister);
+
   const { loading, error, userInfo } = userRegister;
   const location = useLocation();
   const navigate = useNavigate();

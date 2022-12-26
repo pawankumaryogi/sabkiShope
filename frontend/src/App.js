@@ -14,6 +14,8 @@ import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 import UserListScreen from "./screens/UserListScreen";
+import UserEditScreen from "./screens/UserEditScreen";
+import ProductListScreen from "./screens/ProductListScreen";
 function App() {
   return (
     <div>
@@ -23,6 +25,7 @@ function App() {
           <h1>this is Gadgets Shope</h1>
           <Routes>
             <Route path="/order/:id" element={<OrderScreen />} />
+            <Route path="/admin/users/:id/edit" element={<UserEditScreen />} />
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/shipping" element={<ShippingScreen />} />
             <Route path="/payment" element={<PaymentScreen />} />
@@ -32,6 +35,7 @@ function App() {
             <Route path="/product/:id" element={<ProductScreen />} />
             <Route path="/cart/:id" element={<CartScreen />} />
             <Route path="/admin/userList" element={<UserListScreen />} />
+            <Route path="/admin/productList" element={<ProductListScreen />} />
             <Route path="/cart/" element={<CartScreen />} />
             <Route path="/" element={<HomeScreen />} />
           </Routes>
