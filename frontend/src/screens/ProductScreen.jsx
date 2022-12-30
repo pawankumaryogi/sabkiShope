@@ -2,7 +2,7 @@ import React, {useState, useEffect } from "react";
 import { useParams, Link, useNavigate} from "react-router-dom";
 import {Row, Col, Image, ListGroup, Card, Button, Form} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
-import { listProductsDetails } from "../actions/productActions";
+import { listProductDetails } from "../actions/productActions";
 import Rating from '../components/Rating'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
@@ -16,7 +16,7 @@ const ProductScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(()=>{
-   dispatch(listProductsDetails(id));
+   dispatch(listProductDetails(id));
 
   },[dispatch])
 

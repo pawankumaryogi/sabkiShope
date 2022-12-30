@@ -42,7 +42,7 @@ function ProfileScreen() {
         setEmail(user.email);
       }
     }
-  }, [userInfo, dispatch, user]);
+  }, [userInfo, dispatch, user, success]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -50,6 +50,8 @@ function ProfileScreen() {
       setMessage("Password do not match");
     } else {
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
+      setName(user.name);
+      setEmail(user.email);
     }
   };
   return (
@@ -106,9 +108,12 @@ function ProfileScreen() {
       </Col>
       <Col md={9}>
         <h2>MY Orders</h2>
-        {loadingOrders ? <Loader/> : errorOrders ? <Message variant='danger'>{errorOrders}</Message>:
-         (
-          <Table striped bordered hover responsive className='table-sm'>
+        {loadingOrders ? (
+          <Loader />
+        ) : errorOrders ? (
+          <Message variant="danger">{errorOrders}</Message>
+        ) : (
+          <Table striped bordered hover responsive className="table-sm">
             <thead>
               <tr>
                 <th>ID</th>
@@ -129,19 +134,19 @@ function ProfileScreen() {
                     {order.isPaid ? (
                       order.paidAt.substring(0, 10)
                     ) : (
-                      <i className='fas fa-times' style={{ color: 'red' }}></i>
+                      <i className="fas fa-times" style={{ color: "red" }}></i>
                     )}
                   </td>
                   <td>
                     {order.isDelivered ? (
                       order.deliveredAt.substring(0, 10)
                     ) : (
-                      <i className='fas fa-times' style={{ color: 'red' }}></i>
+                      <i className="fas fa-times" style={{ color: "red" }}></i>
                     )}
                   </td>
                   <td>
                     <Link to={`/order/${order._id}`}>
-                      <Button className='btn-sm' variant='light'>
+                      <Button className="btn-sm" variant="light">
                         Details
                       </Button>
                     </Link>
@@ -153,8 +158,7 @@ function ProfileScreen() {
         )}
       </Col>
     </Row>
-  )
+  );
 }
-
 
 export default ProfileScreen;
